@@ -48,3 +48,6 @@ def img():
 
 if __name__ == "__main__":
     app.run()
+
+#wsgi
+application = app
