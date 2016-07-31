@@ -19,7 +19,7 @@ def index():
 
 
 @app.route('/adpix/<uuid>/<id>')
-def detector_pixel(uuid, id):
+def detector_pixel(uuid, *argv):
     if uuid not in cache:
         cache[uuid] = 0
 
@@ -34,7 +34,7 @@ def detector_css():
         cache[uuid] = 0
 
     cache[uuid] += 1
-    return '//{}'.format(uuid4())
+    return '/* placeholder {} */'.format(uuid4())
 
 
 @app.route('/img')
