@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% if not pixel %}
+        {% for i in range(check_count) %}
+            <link rel="stylesheet" type="text/css" href="adv.css?tag={{ uuid }}&id={{ i }}">
+        {% endfor %}
+    {% endif %}
+</head>
+<body>
+    {% if pixel %}
+        {% for i in range(check_count) %}
+            <img src="/adpix/{{ uuid }}/{{ i }}"></img>
+        {% endfor %}
+    {% endif %}
+    <img src="/img?uuid={{ uuid }}">
+</body>
+</html>
