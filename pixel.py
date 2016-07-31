@@ -44,6 +44,8 @@ def img():
     filename = 'ad.png'
     if cache.get(uuid, 0) < check_min:
         filename = 'block.jpg'
+    if len(uuid) != 36:
+        filename = 'err.jpg'
     return send_from_directory(app.static_folder, filename)
 
 if __name__ == "__main__":
