@@ -4,7 +4,6 @@ from time import sleep
 import base64
 
 app = Flask(__name__)
-app.debug = True
 cache = {}  # too lazy
 check_count = 20  # these numbers make no sense but w/e
 check_min = 15
@@ -20,10 +19,11 @@ def index():
 
 @app.route('/adpix/<uuid>/<id>')
 def detector_pixel(uuid, *argv):
-    if uuid not in cache:
-        cache[uuid] = 0
+    if len(uuid) == 36:
+        if uuid not in cache:
+            cache[uuid] = 0
 
-    cache[uuid] += 1
+        cache[uuid] += 1
     return pixel
 
 
