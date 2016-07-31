@@ -14,6 +14,7 @@ pixel = base64.b64decode("R0lGODlhAQABAIAAAP8AAP8AACH5BAEKAAEALAAAAAABAAEAAAICTA
 @app.route('/')
 def index():
     use_pixel = request.args.get('pixel', '0') == '1'
+    use_pixel = False  # Disable pixel based detection because it dun broke
     return render_template('index.html', uuid=uuid4(), check_count=check_count, pixel=use_pixel)
 
 
