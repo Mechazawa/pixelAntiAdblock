@@ -19,6 +19,11 @@ def render_template_lazy(template_name, **context):
     return app.jinja_env.get_template(template_name).render(**context)
 
 
+@app.route('/')
+def r_index():
+    return render_template('index.html')
+
+
 @app.route('/content')
 def r_content():
     return render_template('content.html', uuid=uuid4(), check_count=check_count)
