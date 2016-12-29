@@ -75,11 +75,6 @@ def completed_challenge(uuid):
 def img():
     uuid = request.args.get('uuid', '')
 
-    wait_total = 0.0
-    while wait_total < max_wait and not completed_challenge(uuid):
-        sleep(0.05)
-        wait_total += 0.05
-
     filename = 'ad.png'
     if not completed_challenge(uuid):
         filename = 'block.jpg'
