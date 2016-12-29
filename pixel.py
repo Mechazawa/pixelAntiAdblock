@@ -1,31 +1,16 @@
 from flask import Flask, render_template, request, send_from_directory
 from uuid import uuid4
 from time import sleep
-import base64
 
 app = Flask(__name__)
 cache = {}  # too lazy
 check_count = 20  # these numbers make no sense but w/e
 check_min = 15
 
-pixel = base64.b64decode("R0lGODlhAQABAIAAAP8AAP8AACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==")
-
 
 @app.route('/')
 def index():
-    use_pixel = request.args.get('pixel', '0') == '1'
-    use_pixel = False  # Disable pixel based detection because it dun broke
-    return render_template('index.html', uuid=uuid4(), check_count=check_count, pixel=use_pixel)
-
-
-@app.route('/adpix/<uuid>/<id>')
-def detector_pixel(uuid, *argv):
-    if len(uuid) == 36:
-        if uuid not in cache:
-            cache[uuid] = 0
-
-        cache[uuid] += 1
-    return pixel
+    return render_template('index.html', uuid=uuid4(), check_count=check_count)
 
 
 @app.route('/adv.css')
@@ -52,5 +37,5 @@ def img():
 if __name__ == "__main__":
     app.run()
 
-#wsgi
+# wsgi
 application = app

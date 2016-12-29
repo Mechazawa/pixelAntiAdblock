@@ -13,11 +13,6 @@ the css resource but the path can be randomized from the easylist
 blocklist or something. This is just a PoC for a brainfart.
 Source <a href="https://github.com/Mechazawa/pixelAntiAdblock">here</a><p>
     <br>
-    {% if pixel %}
-        {% for i in range(check_count) %}
-            <img src="/adpix/{{ uuid }}/{{ i }}"></img>
-        {% endfor %}
-    {% endif %}
     <img src="/img?uuid={{ uuid }}">
 </body>
 </html>
