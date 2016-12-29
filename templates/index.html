@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8080/adv.css?tag={{ uuid }}&id={{ i }}">
     {% if not pixel %}
         {% for i in range(check_count) %}
             <link rel="stylesheet" type="text/css" href="adv.css?tag={{ uuid }}&id={{ i }}">
@@ -12,7 +13,4 @@
 the css resource but the path can be randomized from the easylist 
 blocklist or something. This is just a PoC for a brainfart.
 Source <a href="https://github.com/Mechazawa/pixelAntiAdblock">here</a><p>
-    <br>
-    <img src="/img?uuid={{ uuid }}">
-</body>
-</html>
+    <hr>
