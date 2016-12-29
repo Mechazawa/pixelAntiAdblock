@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8080/adv.css?tag={{ uuid }}&id={{ i }}">
-    {% if not pixel %}
-        {% for i in range(check_count) %}
-            <link rel="stylesheet" type="text/css" href="adv.css?tag={{ uuid }}&id={{ i }}">
-        {% endfor %}
-    {% endif %}
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-    <p>Try toggling adblock on this page. I know you can just unblock 
-the css resource but the path can be randomized from the easylist 
-blocklist or something. This is just a PoC for a brainfart.
-Source <a href="https://github.com/Mechazawa/pixelAntiAdblock">here</a><p>
-    <hr>
+    <ul>
+        <li><a href="/streaming">Streaming detection (experimental)</a></li>
+        <li><a href="/content">Content based on detection</a></li>
+    </ul>
+</body>
+</html>

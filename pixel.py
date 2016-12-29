@@ -19,12 +19,17 @@ def render_template_lazy(template_name, **context):
     return app.jinja_env.get_template(template_name).render(**context)
 
 
-@app.route('/')
-def index():
+@app.route('/content')
+def r_content():
+    return render_template('content.html', uuid=uuid4(), check_count=check_count)
+
+
+@app.route('/streaming')
+def r_streaming():
     uuid = str(uuid4())
 
     def generate():
-        yield render_template_lazy('index.html', uuid=uuid, check_count=check_count)
+        yield render_template_lazy('streaming.html', uuid=uuid, check_count=check_count)
 
         wait_total = 0.0
 
@@ -33,9 +38,9 @@ def index():
             wait_total += 0.05
 
         if completed_challenge(uuid):
-            yield render_template_lazy('body_advert.html')
+            yield render_template_lazy('streaming_advert.html')
         else:
-            yield render_template_lazy('body_block.html')
+            yield render_template_lazy('streaming_block.html')
 
         yield '</body></html>'
     return Response(generate())
