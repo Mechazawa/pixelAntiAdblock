@@ -12,7 +12,7 @@ check_min = 15
 redis_connection = redis.from_url('redis://127.0.0.1:6379')
 uuid_regex = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')
 max_wait = 5
-streaming_cdn = 'trace.pixel.shodan.me'
+
 
 
 def render_template_lazy(template_name, **context):
@@ -35,7 +35,7 @@ def r_streaming():
     uuid = str(uuid4())
 
     def generate():
-        yield render_template_lazy('streaming.html', uuid=uuid, check_count=check_count, streaming_cdn=streaming_cdn)
+        yield render_template_lazy('streaming.html', uuid=uuid, check_count=check_count)
 
         wait_total = 0.0
 
