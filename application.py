@@ -8,11 +8,10 @@ from flask import Response
 app = Flask(__name__)
 cache = {}  # too lazy
 check_count = 20  # these numbers make no sense but w/e
-check_min = 15
+check_min = 15 # content detection only
 redis_connection = redis.from_url('redis://127.0.0.1:6379')
 uuid_regex = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')
 max_wait = 5
-
 
 
 def render_template_lazy(template_name, **context):
@@ -35,11 +34,11 @@ def r_streaming():
     uuid = str(uuid4())
 
     def generate():
-        yield render_template_lazy('streaming.html', uuid=uuid, check_count=check_count)
+        yield render_template_lazy('streaming.html', uuid=uuid)
 
         wait_total = 0.0
 
-        while wait_total < max_wait and not completed_challenge(uuid):
+        while wait_total < max_wait and not completed_challenge(uuid, 1):
             sleep(0.05)
             wait_total += 0.05
 
@@ -63,13 +62,13 @@ def detector_css():
     return '/* placeholder {} */'.format(uuid4())
 
 
-def completed_challenge(uuid):
+def completed_challenge(uuid, _check_min=15):
     if uuid_regex.match(uuid) is None:
         return False
 
     name = "httpclient-{}".format(uuid)
     value = int(redis_connection.get(name) or 0)
-    return value >= check_min
+    return value >= _check_min
 
 
 @app.route('/img')

@@ -2,11 +2,7 @@
 <html>
 <head>
     <title>Streaming detection</title>
-    {% if not pixel %}
-        {% for i in range(check_count) %}
-            <link rel="stylesheet" type="text/css" href="/adv.css?tag={{ uuid }}&id={{ i }}">
-        {% endfor %}
-    {% endif %}
+    <link rel="stylesheet" type="text/css" href="/adv.css?tag={{ uuid }}">
 </head>
 <body>
     <p>Try toggling adblock on this page. I know you can just unblock 
