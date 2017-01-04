@@ -34,11 +34,11 @@ def r_streaming():
     uuid = str(uuid4())
 
     def generate():
-        yield render_template_lazy('streaming.html', uuid=uuid)
+        yield render_template_lazy('streaming.html', uuid=uuid, check_count=check_count)
 
         wait_total = 0.0
 
-        while wait_total < max_wait and not completed_challenge(uuid, 1):
+        while wait_total < max_wait and not completed_challenge(uuid):
             sleep(0.05)
             wait_total += 0.05
 
@@ -62,13 +62,13 @@ def detector_css():
     return '/* placeholder {} */'.format(uuid4())
 
 
-def completed_challenge(uuid, _check_min=15):
+def completed_challenge(uuid):
     if uuid_regex.match(uuid) is None:
         return False
 
     name = "httpclient-{}".format(uuid)
     value = int(redis_connection.get(name) or 0)
-    return value >= _check_min
+    return value >= check_min
 
 
 @app.route('/img')
