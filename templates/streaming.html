@@ -14,7 +14,7 @@
         This AdBlock detector works by abusing the streaming browser built into modern webbrowsers. It first sends the
         HEAD containing only a css resource. This css resource will be requested by the browser. If the browser loads
         this resource it completes the challenge and the page will continue loading. If the resource has not been
-        requested after 5 seconds or something (TODO tweak this) then the client will be served a different page due to
+        requested after {{ max_wait }} seconds (TODO tweak this) then the client will be served a different page due to
         the fact that adBlock has been detected. I know you can just unblock the css resource but the path can be
         randomized from the easylist blocklist or something. This is just a PoC for a brainfart. Source code can be
         found <a href="https://github.com/Mechazawa/pixelAntiAdblock">here</a>.

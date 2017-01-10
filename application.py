@@ -16,7 +16,7 @@ check_min_streaming = 1
 check_min_content = 15
 redis_connection = redis.from_url('redis://127.0.0.1:6379')
 uuid_regex = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')
-max_wait = 5
+max_wait = 2
 
 
 def render_template_lazy(template_name, **context):
@@ -39,7 +39,7 @@ def r_streaming():
     uuid = str(uuid4())
 
     def generate():
-        yield render_template_lazy('streaming.html', uuid=uuid, check_count=check_count_streaming)
+        yield render_template_lazy('streaming.html', uuid=uuid, check_count=check_count_streaming, max_wait=max_wait)
 
         wait_total = 0.0
 
