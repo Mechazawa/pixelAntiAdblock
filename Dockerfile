@@ -12,4 +12,4 @@ ENV REDIS_URL=redis://redis:6379
 
 EXPOSE 8000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "${WORKERS}", "application:application"]
+CMD gunicorn --bind 0.0.0.0:8000 --workers ${WORKERS} application:application
