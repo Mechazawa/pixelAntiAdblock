@@ -66,7 +66,7 @@ def detector_css():
         redis_connection.expire(name, 30)  # Expire in 30 seconds
         redis_connection.incr(name)
         value = redis_connection.get(name)
-        print value
+        print(value)
     return '/* placeholder {} */'.format(uuid4())
 
 
