@@ -3,6 +3,7 @@ from uuid import uuid4
 from time import sleep
 import re
 import redis
+import os
 from flask import Response
 
 # code is messy
@@ -14,7 +15,7 @@ check_count_streaming = 1  # these numbers make no sense but w/e
 check_count_content = 20  # these numbers make no sense but w/e
 check_min_streaming = 1
 check_min_content = 15
-redis_connection = redis.from_url('redis://127.0.0.1:6379')
+redis_connection = redis.from_url(os.getenv('REDIS_URL', 'redis://127.0.0.1:6379'))
 uuid_regex = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')
 max_wait = 2
 
